@@ -1,0 +1,21 @@
+﻿<Window x:Class="Gotrays.Desktop.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gotrays.Desktop"
+        xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation/blazor"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="CanResizeWithGrip"
+        WindowStartupLocation="CenterScreen"
+        Icon="wwwroot/favicon.png"
+        MinWidth="510"
+        MinHeight="680"
+        Title="Gotrays.Desktop" Height="680" Width="510">
+    <Grid >
+        <wpf:BlazorWebView Name="BlazorWeb" HostPage="wwwroot\login.html" Services="{DynamicResource services}">
+
+        </wpf:BlazorWebView>
+    </Grid>
+</Window>

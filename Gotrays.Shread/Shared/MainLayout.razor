@@ -1,0 +1,119 @@
+﻿@namespace Gotrays.Shread
+
+
+@inherits LayoutComponentBase
+@inject MainInterop MainInterop
+@inject IWindowService WindowService
+@inject NavigationManager NavigationManager
+@inject UserService UserService
+
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-container {
+      display: flex;
+      height: 100vh;
+    }
+
+    .left {
+      width: 60px;
+      background-color: #f1f1f1;
+    }
+
+    .center {
+      width: 260px;
+    }
+
+    .right {
+      flex: 1;
+      background-color: #f5f5f5;
+      width: calc(100vh - 360px);
+      max-width: 100%;
+    }
+</style>
+<MApp>
+    <CascadingValue Name="@nameof(UserInfoDto)" Value="_userInfoDto">
+        <div class="main-container">
+            <div class="left" id="@Id">
+                <div style="padding: 5px;">
+                    <MAvatar Style="border-radius: 15%;">
+                        <MImage Height="45" Width="45" Src="@_userInfoDto?.Avatar"></MImage>
+                    </MAvatar>
+                </div>
+                <div style="padding: 5px;margin-top: 20px;">
+                    <MButton OnClick="() => SelectRouter(Home)" Class="@GetRouterStyle(0)" Icon Width="45" Height="45">
+                        <MIcon>mdi-camera-iris</MIcon>
+                    </MButton>
+                    <MButton OnClick="() => SelectRouter(Product)" Class="@GetRouterStyle(1)" Icon Width="45" Height="45">
+                        <MIcon>mdi-cart-outline</MIcon>
+                    </MButton>
+                </div>
+                <div style="margin-top: calc(100vh - 230px);padding: 5px;">
+                    <MButton Icon Width="45" Height="45">
+                        <MIcon>mdi-cog</MIcon>
+                    </MButton>
+                </div>
+            </div>
+            <MErrorHandler>
+                @Body
+            </MErrorHandler>
+            <div style="position: absolute;right: 0px;top: 0px">
+                <MButton Text Icon>
+                    <MIcon>mdi-close</MIcon>
+                </MButton>
+            </div>
+        </div>
+    </CascadingValue>
+</MApp>
+
+@code {
+
+    private int RouterValue = 0;
+
+    private string Home = "/";
+
+    private string Product = "/product";
+
+    private UserInfoDto? _userInfoDto;
+
+    private static readonly string Id = Guid.NewGuid().ToString("N");
+
+    protected override async Task OnInitializedAsync()
+    {
+        _userInfoDto = await UserService.GetAsync();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _ = Task.Run((async () =>
+            {
+                await Task.Delay(200);
+                await MainInterop.Init(Id);
+            }));
+        }
+    }
+
+    private string GetRouterStyle(int v)
+    {
+        return v == RouterValue ? "m-list-item--active" : "";
+    }
+
+    private void SelectRouter(string url)
+    {
+        if (url == Home)
+        {
+            RouterValue = 0;
+        }
+        else if (url == Product)
+        {
+            RouterValue = 1;
+        }
+        NavigationManager.NavigateTo(url);
+    }
+
+}

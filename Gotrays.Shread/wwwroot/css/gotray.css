@@ -1,0 +1,68 @@
+﻿.context-menu{
+    position: absolute;
+    width: 200px;
+    background-color: aliceblue;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.channel-message{
+    width: 100%;
+    float: left;
+}
+
+.channel-content {
+    margin: 8px;
+    background-color: #F1F1F1;
+    border-radius: 8px;
+    padding: 5px;
+    max-width: 75%;
+}
+
+
+/* 设置滚动条的宽度 */
+::-webkit-scrollbar {
+    width: 10px; /* 滚动条宽度 */
+}
+
+/* 滚动条的轨道 */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* 轨道的颜色 */
+    border-radius: 10px; /* 轨道的圆角 */
+}
+
+/* 滚动条的滑块 */
+::-webkit-scrollbar-thumb {
+    background: #888; /* 滑块的颜色 */
+    border-radius: 10px; /* 滑块的圆角 */
+}
+
+    /* 滚动条的滑块：鼠标悬停时的样式 */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555; /* 滑块的颜色 */
+    }
+
+
+
+.markdown-parser__basic img {
+    max-width: 100%;
+}
+
+.markdown-parser__basic blockquote {
+    border-left: 4px lightgray solid;
+    padding-left: 16px;
+}
+
+.pre .code {
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+
+.markdown-code{
+    
+}
+
+.m-markdown-it p {
+    white-space: pre-wrap;
+}

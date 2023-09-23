@@ -1,0 +1,20 @@
+﻿@inject IFreeSql Free
+
+<MList Nav Dense Style="height: 95%;background-color: #f0f3f9">
+    <MListItemGroup
+                    Color="primary">
+        @foreach (var item in Values)
+        {
+            <MListItem Class="@(item.Id == SelectId ? "m-list-item--active" : "")" OnClick="() => Select(item)">
+                <MListItemIcon>
+                    <MAvatar Style="margin: -3px;" Height="30" Width="30">
+                        <MImage Height="30" Width="30" MaxWidth="30" Src="@item.Avatar"></MImage>
+                    </MAvatar>
+                </MListItemIcon>
+                <MListItemContent>
+                    <MListItemTitle>@item.Title</MListItemTitle>
+                </MListItemContent>
+            </MListItem>
+        }
+    </MListItemGroup>
+</MList>
