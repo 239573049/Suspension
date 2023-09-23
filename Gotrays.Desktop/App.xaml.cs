@@ -1,10 +1,12 @@
-﻿using System.Net.Http;
-using System.Windows;
+﻿using System.ComponentModel.Design;
+using System.Drawing;
 using Gotrays.Contract;
 using Gotrays.Contract.Services;
 using Gotrays.Shread;
-using Gotrays.Shread.Services;
 using Microsoft.Extensions.DependencyInjection;
+using System.Windows;
+using Application = System.Windows.Application;
+using System.Windows.Forms;
 
 namespace Gotrays.Desktop;
 
@@ -13,6 +15,7 @@ namespace Gotrays.Desktop;
 /// </summary>
 public partial class App : Application
 {
+
     public App()
     {
         var gotryas = GotrayAppHelper.GotrayApp.CreateGotrayAppBuilder();
@@ -42,4 +45,5 @@ public partial class App : Application
             StartupUri = new Uri("MainWindow.xaml", UriKind.Relative);
         }
     }
+
 }

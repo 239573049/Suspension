@@ -10,11 +10,11 @@ public static class GotrayShreadExtension
     public static IServiceCollection AddShread(this IServiceCollection services)
     {
         // TODO: 注意在使用js互操作的时候使用作用域生命周期会遇到IJSRuntime被释放。
-        services.AddTransient<MainInterop>();
-        services.AddTransient<DocumentInterop>();
+        services.AddScoped<MainInterop>();
+        services.AddScoped<DocumentInterop>();
 
         
-        services.AddTransient((_) =>
+        services.AddScoped((_) =>
         {
             var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GotraysAI");
 

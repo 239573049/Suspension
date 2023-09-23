@@ -64,6 +64,7 @@ public class WindowService : IWindowService
         if (window != null)
         {
             window.WindowState = WindowState.Minimized;
+            window.ShowInTaskbar = false;
         }
     }
 

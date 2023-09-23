@@ -194,9 +194,6 @@ public partial class Home : IAsyncDisposable
     public async ValueTask DisposeAsync()
     {
         await CastAndDispose(_reference);
-        if (Free != null) await CastAndDispose(Free);
-        if (MainInterop != null) await MainInterop.DisposeAsync();
-        if (DocumentInterop != null) await DocumentInterop.DisposeAsync();
 
         return;
 
@@ -225,6 +222,10 @@ public partial class Home : IAsyncDisposable
     {
         await Free.Delete<ShreadChannelDto>()
             .Where(x => x.Id == value.Id)
+            .ExecuteAffrowsAsync();
+
+        await Free.Delete<MessageDto>()
+            .Where(x => x.ChannelId == value.Id)
             .ExecuteAffrowsAsync();
 
         setting = false;
