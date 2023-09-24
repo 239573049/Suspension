@@ -1,6 +1,21 @@
 ﻿@page "/setting"
-<h3>Setting</h3>
 
-@code {
 
-}
+<MTabs
+    Color="deep-purple accent-4"
+    Right>
+    <MTab>设置</MTab>
+    <MTab>关于</MTab>
+
+    <MTabItem>
+        <MContainer Fluid>
+            <SystemSetting />
+        </MContainer>
+    </MTabItem>
+    <MTabItem>
+        <MContainer Fluid>
+            <About/>
+        </MContainer>
+    </MTabItem>
+
+</MTabs>

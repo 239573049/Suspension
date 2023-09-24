@@ -45,6 +45,7 @@ public static class GotrayShreadExtension
         services.AddSingleton<ChatService>();
         services.AddSingleton<ChatProductsService>();
         services.AddSingleton<PaysService>();
+        services.AddSingleton<AppService>();
         
         return services;
     }

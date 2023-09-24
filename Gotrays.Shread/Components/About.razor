@@ -1,0 +1,45 @@
+﻿@inject AppService AppService
+@inject IHttpClientFactory HttpClientFactory
+@inject IPopupService PopupService
+
+<MCardTitle>关于Gotrays Desktop</MCardTitle>
+
+<MCardText>
+
+    <div>
+        当前版本：@Constant.Versions
+    </div>
+    <MButton Text OnClick="CheckUpdate">检查更新</MButton>
+</MCardText>
+
+ <PModal @bind-Value="Update"
+        Persistent
+         Title="新版本"
+         Width="500"
+         OnSave="OnSave"
+         OnCancel="OnCancel">
+     <ChildContent>
+         <MCardTitle>@_app.description</MCardTitle>
+         <MCardText>
+             @_app.message
+             
+             <span>
+                 @_app.uploadDate.ToString("yyyy-MM-dd HH:mm:ss")
+             </span>
+
+             <MProgressLinear @bind-Value="@progressPercentage" Height="25">
+                 <strong>@($"{context}%")</strong>
+             </MProgressLinear>
+         </MCardText>
+     </ChildContent>
+     <CancelContent Context="cancel">
+         <MButton Icon OnClick="cancel.Click" Disabled="cancel.Loading">
+             取消
+         </MButton>
+     </CancelContent>
+     <SaveContent Context="save">
+         <MButton Icon Color="primary" OnClick="save.Click" Disabled="save.Loading" Loading="save.Loading">
+             更新
+         </MButton>
+     </SaveContent>
+ </PModal>
