@@ -19,6 +19,10 @@ public partial class About
         {
             Update = true;
         }
+        else
+        {
+            await PopupService.EnqueueSnackbarAsync("已经是最新版本！", AlertTypes.Success);
+        }
     }
 
     private async Task OnSave()
@@ -37,6 +41,9 @@ public partial class About
 
             return;
         }
+
+
+        await PopupService.EnqueueSnackbarAsync("正在更新", AlertTypes.Success);
 
         var totalBytes = response.Content.Headers.ContentLength.GetValueOrDefault();
 
@@ -70,6 +77,8 @@ public partial class About
         fileStream.Close();
 
         Process.Start(Path.Combine(path, "gotrays-update.exe"));
+
+        await PopupService.EnqueueSnackbarAsync("更新完成，等待安装！", AlertTypes.Success);
 
         await Task.Delay(2000);
 
