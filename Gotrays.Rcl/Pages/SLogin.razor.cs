@@ -1,7 +1,7 @@
 ﻿using Gotrays.Contract.Modules;
 using Microsoft.AspNetCore.Components;
 
-namespace Gotrays.Shread.Pages;
+namespace Gotrays.Rcl.Pages;
 
 public partial class SLogin
 {
@@ -37,16 +37,12 @@ public partial class SLogin
         }
     }
 
-
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            _ = Task.Run((async () =>
-            {
-                await Task.Delay(200);
-                await MainInterop.Init(Id);
-            }));
+            await Task.Delay(200);
+            await MainInterop.Init(Id);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Gotrays.Shread.Modules;
 using Microsoft.AspNetCore.Components;
 
-namespace Gotrays.Shread.Components;
+namespace Gotrays.Rcl.Components;
 
 public partial class Channel
 {

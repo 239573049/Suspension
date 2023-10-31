@@ -1,9 +1,10 @@
 ﻿using FreeSql;
 using Gotrays.Contract.Services;
-using Gotrays.Shread.Services;
+using Gotrays.Rcl.Services;
+using Gotrays.Shread;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Gotrays.Shread;
+namespace Gotrays.Rcl;
 
 public static class GotrayShreadExtension
 {
@@ -41,7 +42,7 @@ public static class GotrayShreadExtension
             options.BaseAddress = new Uri("https://open666.cn/api/v1/");
         });
 
-        services.AddSingleton<UserService>();
+        services.AddSingleton<IUserService,UserService>();
         services.AddSingleton<ChatService>();
         services.AddSingleton<ChatProductsService>();
         services.AddSingleton<PaysService>();

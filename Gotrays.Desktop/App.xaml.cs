@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using Application = System.Windows.Application;
 using System.Windows.Forms;
+using Gotrays.Rcl;
 
 namespace Gotrays.Desktop;
 
@@ -15,7 +16,6 @@ namespace Gotrays.Desktop;
 /// </summary>
 public partial class App : Application
 {
-
     public App()
     {
         var gotryas = GotrayAppHelper.GotrayApp.CreateGotrayAppBuilder();
@@ -29,12 +29,11 @@ public partial class App : Application
         var app = gotryas.Build();
     }
 
-    protected override void OnStartup(StartupEventArgs e)
+    protected override async void OnStartup(StartupEventArgs e)
     {
         var storageService = GotrayAppHelper.GetRequiredService<IStorageService>();
 
         var token = storageService.GetString(Constant.ApiToken);
-
 
         if (token == null)
         {
@@ -42,8 +41,10 @@ public partial class App : Application
         }
         else
         {
-            StartupUri = new Uri("MainWindow.xaml", UriKind.Relative);
+            var userService = GotrayAppHelper.GetService<IUserService>();
+
+            var info = await userService?.GetAsync();
+            StartupUri = info == null ? new Uri("Login.xaml", UriKind.Relative) : new Uri("MainWindow.xaml", UriKind.Relative);
         }
     }
-
 }

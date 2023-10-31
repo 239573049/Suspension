@@ -1,6 +1,6 @@
 ﻿using Gotrays.Contract.Services;
 
-namespace Gotrays.Shread.Services;
+namespace Gotrays.Rcl.Services;
 
 public abstract class ApiService
 {

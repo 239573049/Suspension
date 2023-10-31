@@ -2,7 +2,7 @@
 using LiteDB;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace Gotrays.Shread.Services;
+namespace Gotrays.Rcl.Services;
 
 public class StorageService : IStorageService, IDisposable
 {

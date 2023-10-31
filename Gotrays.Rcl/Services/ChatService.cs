@@ -2,7 +2,7 @@
 using System.Text.Json;
 using Gotrays.Contract.Services;
 
-namespace Gotrays.Shread.Services;
+namespace Gotrays.Rcl.Services;
 
 public class ChatService : ApiService
 {

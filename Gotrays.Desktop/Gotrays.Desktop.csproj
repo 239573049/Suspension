@@ -28,7 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Gotrays.Shread\Gotrays.Shread.csproj" />
+    <ProjectReference Include="..\Gotrays.Rcl\Gotrays.Rcl.csproj" />
   </ItemGroup>
 
   <ItemGroup>

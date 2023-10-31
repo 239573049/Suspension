@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34004.107
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gotrays.Desktop", "Gotrays.Desktop\Gotrays.Desktop.csproj", "{A4001B29-7017-4D80-9843-07F5E61411E6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gotrays.Shread", "Gotrays.Shread\Gotrays.Shread.csproj", "{2E37D059-3EBB-4756-9A56-134D976162A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gotrays.Rcl", "Gotrays.Rcl\Gotrays.Rcl.csproj", "{2E37D059-3EBB-4756-9A56-134D976162A6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gotrays.Service", "Gotrays.Service\Gotrays.Service.csproj", "{7EFD520B-12A5-47F8-8677-0F492A15E46A}"
 EndProject

@@ -5,7 +5,7 @@ namespace Gotrays.Shread;
 
 public class MainInterop : JSModule
 {
-    public MainInterop(IJSRuntime js) : base(js,"/_content/Gotrays.Shread/js/main.js")
+    public MainInterop(IJSRuntime js) : base(js,"/_content/Gotrays.Rcl/js/main.js")
     {
     }
 

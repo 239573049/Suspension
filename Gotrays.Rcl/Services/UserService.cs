@@ -2,9 +2,9 @@
 using Gotrays.Contract.Modules;
 using Gotrays.Contract.Services;
 
-namespace Gotrays.Shread.Services;
+namespace Gotrays.Rcl.Services;
 
-public class UserService : ApiService
+public class UserService : ApiService,IUserService
 {
     private readonly IStorageService _storageService;
 

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
-using Gotrays.Contract;
-using Gotrays.Shread.Pages;
-using Microsoft.AspNetCore.Components.WebView.Wpf;
 using System.Windows;
+using Gotrays.Contract;
+using Gotrays.Rcl.Pages;
+using Microsoft.AspNetCore.Components.WebView.Wpf;
 
 namespace Gotrays.Desktop;
 /// <summary>
@@ -13,7 +13,6 @@ public partial class Login : Window
 	public Login()
 	{
 		InitializeComponent();
-
 
 		BlazorWeb.RootComponents.Add(new RootComponent()
 		{

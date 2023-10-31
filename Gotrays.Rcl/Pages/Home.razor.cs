@@ -1,11 +1,11 @@
 ﻿using System.Text.Json;
 using Gotrays.Contract.Modules;
-using Gotrays.Shread.Components;
+using Gotrays.Rcl.Components;
 using Gotrays.Shread.Modules;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace Gotrays.Shread.Pages;
+namespace Gotrays.Rcl.Pages;
 
 public partial class Home : IAsyncDisposable
 {
@@ -166,7 +166,7 @@ public partial class Home : IAsyncDisposable
             .ToList();
 
         page++;
-        
+
         if (value.Count == 0)
         {
             page--;
@@ -181,7 +181,7 @@ public partial class Home : IAsyncDisposable
     {
         if (firstRender)
         {
-            _ = Task.Run((async () =>
+            _ = Task.Factory.StartNew((Action)(async () =>
             {
                 await Task.Delay(200);
                 await MainInterop.Init(TitleId);

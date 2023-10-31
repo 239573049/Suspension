@@ -1,6 +1,6 @@
 ﻿using Gotrays.Contract.Modules;
 
-namespace Gotrays.Shread.Pages;
+namespace Gotrays.Rcl.Pages;
 
 public partial class Product
 {
@@ -19,11 +19,8 @@ public partial class Product
 
         ShowCode = true;
 
-        _ = Task.Run(async () =>
-        {
-            await Task.Delay(200);
-            await MainInterop.QrCode("qr-code", result.qr);
-        });
+        await Task.Delay(200);
+        await MainInterop.QrCode("qr-code", result.qr);
     }
     
     

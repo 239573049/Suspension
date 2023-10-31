@@ -5,7 +5,7 @@ namespace Gotrays.Shread;
 
 public class DocumentInterop : JSModule
 {
-    public DocumentInterop(IJSRuntime js) : base(js, "/_content/Gotrays.Shread/js/document-helper.js")
+    public DocumentInterop(IJSRuntime js) : base(js, "/_content/Gotrays.Rcl/js/document-helper.js")
     {
     }
 

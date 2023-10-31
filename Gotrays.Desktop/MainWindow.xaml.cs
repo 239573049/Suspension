@@ -1,9 +1,11 @@
-﻿using Gotrays.Contract;
-using Gotrays.Shread;
-using Microsoft.AspNetCore.Components.WebView.Wpf;
+﻿using System.ComponentModel;
 using System.Drawing;
 using System.Windows;
 using System.Windows.Forms;
+using Gotrays.Contract;
+using Gotrays.Rcl;
+using Microsoft.AspNetCore.Components.WebView.Wpf;
+using Application = System.Windows.Application;
 
 namespace Gotrays.Desktop;
 
@@ -12,7 +14,7 @@ namespace Gotrays.Desktop;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private System.Windows.Forms.NotifyIcon _notifyIcon = null;
+    private NotifyIcon _notifyIcon = null;
 
     public MainWindow()
     {
@@ -51,7 +53,7 @@ public partial class MainWindow : Window
         this.ShowInTaskbar = true;
     }
 
-    private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+    private void MainWindow_Closing(object sender, CancelEventArgs e)
     {
         if (_notifyIcon != null)
         {
@@ -68,6 +70,6 @@ public partial class MainWindow : Window
             _notifyIcon = null;
         }
 
-        System.Windows.Application.Current.Shutdown();
+        Application.Current.Shutdown();
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using Gotrays.Contract.Modules;
 
-namespace Gotrays.Shread.Components;
+namespace Gotrays.Rcl.Components;
 
 public partial class About
 {
