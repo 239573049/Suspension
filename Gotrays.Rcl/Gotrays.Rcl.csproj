@@ -27,12 +27,6 @@
 
 
   <ItemGroup>
-    <Folder Include="Extensions\" />
-  </ItemGroup>
-
-
-
-  <ItemGroup>
     <Content Update="wwwroot\js\main.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
