@@ -1,0 +1,48 @@
+﻿@page "/pages/login"
+@inject IUserService UserService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@layout EmptyLayout
+@inject NavigationManager NavigationManager
+@inject IWindowService WindowService
+
+<MApp>
+    <div class="d-flex align-center" style="height: calc(100% - 96px)">
+        <MCard Width=510 Height=680 Class="mx-auto my-auto">
+            <div style="height:60px;"></div>
+            <div class="mt-2 mx-auto text-center" style="width:420px;">
+
+                <MAvatar Size=80>
+                    <MImage Src="/favicon.ico">
+                    </MImage>
+                </MAvatar>
+                <h5 class="mt-2 mb-12">欢迎使用TokenAI 👋</h5>
+
+                <MTextField @bind-Value="_payload.Account"
+                            Label="账号"
+                            Placeholder="admin"
+                             Outlined
+                             HideDetails="@("auto")">
+                 </MTextField>
+                 <MTextField @bind-Value="_payload.Password"
+                             Class="mt-10"
+                             Label="Password"
+                             Type="@(_show ? "text" : "password")"
+                             AppendIcon="@(_show ? "mdi-eye" : "mdi-eye-off")"
+                             OnAppendClick="()=>_show = !_show"
+                             Outlined
+                             HideDetails="@("auto")">
+                 </MTextField>
+                 <a href="https://open666.cn/forgotten" class="d-flex justify-end mt-1 text-caption hover-pointer">
+                     忘记密码？
+                 </a>
+                 <MButton Class="mt-11 rounded-4 text-btn white--text" OnClick="OnLogin" Height=46 Width=340 Color="primary">登录</MButton>
+
+                 <div class="my-6">
+                     <span class="text-btn">没用账号？ &nbsp;</span>
+                     <a href="https://open666.cn/register" class="primary--text hover-pointer">注册账号</a>
+                 </div>
+             </div>
+         </MCard>
+
+     </div>
+</MApp>

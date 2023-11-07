@@ -1,0 +1,7 @@
+﻿<Project>
+
+
+    <PropertyGroup>
+        <MasaBlazorVersion>1.2.0</MasaBlazorVersion>
+    </PropertyGroup>
+</Project>

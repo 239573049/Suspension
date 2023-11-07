@@ -1,0 +1,54 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+html {
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.rcl-container {
+    width: 100%;
+    overflow: hidden; /* 清除浮动 */
+}
+
+.rcl-left {
+    float: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 55px;
+    padding: 0px 0px 0px 10px;
+    background-color: #f2f2f2;
+    height: 100vh;
+}
+
+.rcl-left-top {
+    margin: 10px; /* 设置icon之间的间距 */
+}
+
+.rcl-left-top, .rcl-left-bottom {
+    width: 50px; /* 设置icon的宽度 */
+    height: 50px; /* 设置icon的高度 */
+}
+.rcl-menu-select {
+    background-color: #e8e8e8;
+}
+
+.rcl-middle {
+    float: left;
+    width: 250px;
+    background-color: #ddd;
+    height: 100vh;
+}
+
+.rcl-right {
+    margin-left: 305px; /* 左边和中间栏的宽度总和 */
+    background-color: #e8e8e8;
+    height: 100vh;
+}
