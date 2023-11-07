@@ -1,12 +1,4 @@
-﻿using System.Net;
-using System.Net.Http.Json;
-using Gotrays.Contract;
-using Gotrays.Contract.Dtos;
-using Gotrays.Contract.Dtos.Auth;
-using Gotrays.Contract.Dtos.Users;
-using Gotrays.Contract.Services;
-using GotraysService.Contracts.Dtos.Auth;
-
+﻿
 namespace Gotrays.Application.Services;
 
 public class UserService : ServiceBase, IUserService

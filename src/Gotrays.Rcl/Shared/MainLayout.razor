@@ -1,4 +1,5 @@
-﻿@inherits LayoutComponentBase
+﻿@using Gotrays.Contract.Dtos.Users
+@inherits LayoutComponentBase
 @inject IUserService UserService
 @inject IWindowService WindowService
 @inject NavigationManager NavigationManager
@@ -6,7 +7,6 @@
 
 <MApp>
     <MErrorHandler>
-
         <div class="rcl-container">
             <div class="rcl-left">
                 <div class="rcl-left-top">
@@ -14,26 +14,28 @@
                         <MImage Src="@userDto?.Avatar" />
                     </MAvatar>
                     <MButton Class="@("ma-2 "+GetClass(Home))"
-                                      Text
-                              OnClick="()=>SelectMenu(Home)"
-                                      Icon
-                              Style="margin: 20px 0 0 0 !important;"
-                              Color="red lighten-2">
-                         <MIcon>mdi-google-chrome</MIcon>
-                     </MButton>
-                 </div>
-                 <div class="rcl-left-bottom">
-                     <MButton OnClick="()=>SelectMenu(Setting)" Class="@("ma-2 "+GetClass(Setting))"
-                                      Text
-                                      Icon
-                              Style="margin: 0 !important"
-                              Color="red lighten-2">
-                         <MIcon>mdi-cog-outline</MIcon>
-                     </MButton>
-                 </div>
+                             Text
+                             OnClick="()=>SelectMenu(Home)"
+                             Icon
+                             Style="margin: 20px 0 0 0 !important;"
+                             Color="lighten-2">
+                        <MIcon>mdi-chat-processing-outline</MIcon>
+                    </MButton>
+                </div>
+                <div class="rcl-left-bottom">
+                    <MButton OnClick="()=>SelectMenu(Setting)" Class="@("ma-2 "+GetClass(Setting))"
+                             Text
+                             Icon
+                             Style="margin: 0 !important"
+                             Color="lighten-2">
+                        <MIcon>mdi-cog-outline</MIcon>
+                    </MButton>
+                </div>
 
-             </div>
-             @Body
+            </div>
+            <CascadingValue Name="@nameof(GetUserDto)" Value="userDto">
+                @Body
+            </CascadingValue>
         </div>
     </MErrorHandler>
 

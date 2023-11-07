@@ -1,9 +1,38 @@
 @page "/"
+
+@inject IChannelService ChannelService
 @layout MainLayout
 
-<div class="rcl-middle">
-
-</div>
-<div class="rcl-right">
-
-</div>
+<CascadingValue Name="@nameof(SelectChannel)" Value="SelectChannel">
+    <div class="rcl-middle">
+        <MList Rounded Dense Style="margin-top: 8px">
+            <MSubheader>
+                <MTextField Dense
+                            TValue="string"
+                            Value="_search"
+                            ValueChanged="SearchChanged" Outlined
+                            Label="搜索" PrependInnerIcon="fa:fas fa-search" OnAppendOuterClick="CreateAsync" AppendOuterIcon="mdi-plus-thick">
+                </MTextField>
+            </MSubheader>
+            <MListItemGroup @bind-Value="SelectedItem"
+                            Color="primary">
+                @foreach (var item in _channels)
+                {
+                    <MListItem Value="item.Id.ToString()">
+                        <MListItemIcon>
+                            <MIcon>
+                                @item.Icon
+                            </MIcon>
+                        </MListItemIcon>
+                        <MListItemContent>
+                            <MListItemTitle>@item.Title</MListItemTitle>
+                        </MListItemContent>
+                    </MListItem>
+                }
+            </MListItemGroup>
+        </MList>
+    </div>
+    <div class="rcl-right">
+        <ChatMessage />
+    </div>
+</CascadingValue>

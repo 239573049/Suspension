@@ -1,7 +1,4 @@
-﻿using Gotrays.Contract.Services;
-using Gotrays.Shared;
-
-namespace Gotrays.Application.Services;
+﻿namespace Gotrays.Application.Services;
 
 public abstract class ServiceBase
 {

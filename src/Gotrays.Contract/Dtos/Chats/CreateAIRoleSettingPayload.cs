@@ -1,4 +1,4 @@
-﻿namespace GotraysService.Contracts.Dtos.Chats;
+﻿namespace Gotrays.Contract.Dtos.Chats;
 
 public class CreateAIRoleSettingPayload
 {

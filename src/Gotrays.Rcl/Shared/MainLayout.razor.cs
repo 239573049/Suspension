@@ -17,7 +17,7 @@ public partial class MainLayout
     protected override async Task OnInitializedAsync()
     {
         WindowService.UpdateTitle("智能聊天首页");
-        WindowService.SetWindowSize(new Size(890, 490));
+        WindowService.SetWindowSize(new Size(1080, 720));
         var result = await AuthenticationStateProvider.GetAuthenticationStateAsync();
 
         // 当登录才获取信息

@@ -1,7 +1,4 @@
-﻿using System.Text.Json;
-using Gotrays.Contract.Services;
-
-namespace Gotrays.Application.Services;
+﻿namespace Gotrays.Application.Services;
 
 public class StorageService : IStorageService
 {

@@ -1,13 +1,12 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace GotraysService.Contracts.Dtos.Chats;
-
+namespace Gotrays.Contract.Dtos.Chats;
 
 public class ChatCompletionDto
 {
     public string model { get; set; }
 
-    public List<ChatCompletionRequestMessage> messages { get; set; }
+    public List<ChatCompletionRequestMessage> messages { get; set; } = new();
 
     public double? temperature { get; set; }
 
@@ -16,17 +15,13 @@ public class ChatCompletionDto
     /// </summary>
     public double? top_p { get; set; }
 
-    public bool stream { get; set; } = true;
-
-    /// <summary>
-    /// 生成的答案允许的最大标记数。默认情况下，模型可以返回的token数量为(4096 -提示token)。
-    /// </summary>
-    public double max_tokens { get; set; }
+    public int max_tokens { get; set; } = 500;
 
     /// <summary>
     /// 在-2.0到2.0之间的数字。正值会根据新标记在文本中存在的频率来惩罚它们，降低模型逐字重复同一行的可能性。[有关频率和存在惩罚的更多信息。](https://docs.api-reference/parameter -details)
     /// </summary>
     public double? frequency_penalty { get; set; }
+
     public Error error { get; set; }
 }
 
@@ -38,11 +33,9 @@ public class ChatCompletionRequestMessage
 
     public string? name { get; set; }
 
-    [JsonIgnore]
-    public int token { get; set; }
+    [JsonIgnore] public int token { get; set; }
 
-    [JsonIgnore]
-    public int Sort { get; set; }
+    [JsonIgnore] public int Sort { get; set; }
 }
 
 public class Error

@@ -1,5 +1,12 @@
 ﻿<Project>
 
+    <PropertyGroup>
+        <AssemblyVersion>1.0.0.0</AssemblyVersion>
+        <Authors>Gotrays</Authors>
+        <Company>Gotrays</Company>
+        <Product>Gotrays</Product>
+        <Copyright>All rights reserved by Gotrays</Copyright>
+    </PropertyGroup>
 
     <PropertyGroup>
         <MasaBlazorVersion>1.2.0</MasaBlazorVersion>

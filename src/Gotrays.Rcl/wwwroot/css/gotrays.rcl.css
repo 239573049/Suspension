@@ -24,7 +24,7 @@ body {
     align-items: center;
     width: 55px;
     padding: 0px 0px 0px 10px;
-    background-color: #f2f2f2;
+    background-color: #FFFFFF;
     height: 100vh;
 }
 
@@ -37,18 +37,106 @@ body {
     height: 50px; /* 设置icon的高度 */
 }
 .rcl-menu-select {
-    background-color: #e8e8e8;
+    background-color: #a6a3a3;
 }
 
 .rcl-middle {
     float: left;
     width: 250px;
-    background-color: #ddd;
+    background-color: #f9f9f9;
     height: 100vh;
+    padding: 8px;
+}
+
+.theme--light.m-list{
+    background-color: #f9f9f9 !important;
 }
 
 .rcl-right {
     margin-left: 305px; /* 左边和中间栏的宽度总和 */
     background-color: #e8e8e8;
     height: 100vh;
+}
+
+.chat-message-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* 设置容器高度为视口高度 */
+}
+
+.chat-message-content {
+    flex: 1; /* 上部内容占据剩余空间 */
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.chat-message-footer {
+    height: 145px; /* 设置底部高度为130px */
+    padding: 8px;
+}
+
+.chat-input{
+    border: none;
+    outline: none;
+    width: 100%;
+    resize: none;
+    height: 60%;
+    word-wrap: break-word;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+.message {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.message-content {
+    background-color: #f1f0f0;
+    padding: 8px;
+    border-radius: 8px;
+    flex-wrap: wrap;
+    max-width: 70%;
+    word-wrap: break-word;
+    width: auto;
+}
+
+.message-time {
+    font-size: 12px;
+    color: #999;
+    margin: 5px;
+    text-align: center;
+}
+
+.self .message-content {
+    background-color: #dcf8c6;
+    align-self: flex-start;
+}
+
+.m-markdown-it code{
+    white-space: pre-wrap;
+    overflow-x: auto;
+    
+}
+
+.chat-send-but{
+    background-color: #FFFFFF;
+}
+
+.message-function{
+    margin: 5px;
 }

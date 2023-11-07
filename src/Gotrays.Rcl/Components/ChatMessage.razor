@@ -1,0 +1,36 @@
+﻿@inject IChatMessageService ChatMessageService
+@inject IChatService ChatService
+@inject GotraysInterop GotraysInterop
+@inject IPopupService PopupService
+
+<div class="chat-message-container">
+    <div class="chat-message-content">
+        @foreach (var chatMessage in _chatMessages)
+        {
+            <div class="message-time">
+                @chatMessage.CreatedTime.ToString("yyyy-MM-dd HH:mm:ss")
+            </div>
+            <div class="@("message " + GetChatMessageClass(chatMessage))">
+                <div style="padding: 5px">
+                    <MAvatar Size="35">
+                        <MImage Src="@(chatMessage.Curren?userDto?.Avatar:"/_content/Gotrays.Rcl/img/chatgpt.png")"></MImage>
+                    </MAvatar>
+                </div>
+                <div class="message-content">
+                    <MMarkdownIt Source="@chatMessage.Message"/>
+                </div>
+                <div class="message-function">
+                    <div><MButton Small OnClick="chatMessage.OnCopy" Text>复制</MButton></div>
+                    <div><MButton Small OnClick="chatMessage.OnDelete" Text>删除</MButton></div>
+                    <div><MButton Small OnClick="chatMessage.OnUpdate" Text>编辑</MButton></div>
+                </div>
+            </div>
+        }
+    </div>
+    <MDivider></MDivider>
+    <div class="chat-message-footer">
+        <textarea @bind=_value type="text" class="chat-input" placeholder="请输入内容">
+        </textarea>
+        <MButton Class="chat-send-but" Style="float: right;margin-right: 8px;" Large OnClick="OnSendAsync" Depressed>发送</MButton>
+    </div>
+</div>

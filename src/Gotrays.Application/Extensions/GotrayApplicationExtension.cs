@@ -28,5 +28,10 @@ public static class GotrayApplicationExtension
 
         services.AddScoped<IStorageService, StorageService>();
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IChannelService, ChannelService>();
+        services.AddScoped<IChatMessageService, ChatMessageService>();
+        services.AddScoped<IChatService, ChatService>();
+
     }
+    
 }
