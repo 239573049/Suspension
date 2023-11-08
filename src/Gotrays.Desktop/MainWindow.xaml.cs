@@ -30,7 +30,7 @@ public partial class MainWindow : Window
 
         serviceCollection.AddScoped<IWindowService, WindowService>();
 
-        Resources.Add("services", serviceCollection.BuildServiceProvider());
+        Resources.Add("services", serviceCollection.BuildServiceProvider().BuilderRcl());
 
         GotraysWebView.RootComponents.Add(new RootComponent()
         {

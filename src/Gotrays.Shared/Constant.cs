@@ -12,4 +12,11 @@ public static class Constant
 
         public const string Token = Default + "Token";
     }
+
+    public class LoadEventBus
+    {
+        private const string Default = Constant.Default + "LoadEventBus:";
+
+        public const string Notifications = Default + "Notifications";
+    }
 }

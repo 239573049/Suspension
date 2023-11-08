@@ -184,4 +184,17 @@ public partial class ChatMessage
 
         return "";
     }
+
+    protected override void OnInitialized()
+    {
+        
+        KeyLoadEventBus.Subscription(Constant.LoadEventBus.Notifications,(async o =>
+        {
+            if (o is string str)
+            {
+                await PopupService.EnqueueSnackbarAsync(new SnackbarOptions(str, AlertTypes.Info));
+            }
+        }));
+
+    }
 }

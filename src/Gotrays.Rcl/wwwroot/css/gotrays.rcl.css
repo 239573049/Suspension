@@ -140,3 +140,7 @@ body {
 .message-function{
     margin: 5px;
 }
+
+.theme--light.m-application code{
+    background-color:transparent;
+}
