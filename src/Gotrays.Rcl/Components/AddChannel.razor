@@ -1,0 +1,105 @@
+﻿@inject IChannelService ChannelService
+
+<PModal @bind-Value="Value"
+        FormModel="ChannelDto"
+        Persistent
+        Title="新增频道"
+        Width="500"
+        OnSave="HandleOnSave"
+        OnCancel="HandleOnCancel">
+    <MRow>
+        <MCol Cols="12">
+            <MTextField @bind-Value="ChannelDto.Title"
+                        Label="标题"
+                        Dense
+                        Outlined
+                        HideDetails="@("auto")" />
+        </MCol>
+        <MCol Cols="12">
+            <MTextField @bind-Value="ChannelDto.Description"
+                        Label="描述"
+                        Dense
+                        Outlined
+                        HideDetails="@("auto")" />
+        </MCol>
+        <MCol Cols="12">
+            <MTextField @bind-Value="ChannelDto.MaxHistory"
+                        Label="关联最大记录"
+                        Dense
+                        Outlined
+                        HideDetails="@("auto")" />
+        </MCol>
+        <MCol Cols="12">
+            <MTextField @bind-Value="ChannelDto.Sort"
+                        Label="排序"
+                        Dense
+                        Outlined
+                        HideDetails="@("auto")" />
+        </MCol>
+        <MCol Cols="12">
+            <MTextarea @bind-Value="ChannelDto.Role"
+                        Label="角色"
+                        Dense
+                        Outlined
+                        HideDetails="@("auto")" />
+        </MCol>
+        <MCol Cols="12">
+            <MSelect Items="model"
+                     @bind-Value="@ChannelDto.Model"
+                     ItemText="u => u"
+                     ItemValue="u => u"
+                     Label="AI模型"
+                     Dense
+                     Outlined></MSelect>
+        </MCol>
+        @if (exception != null)
+        {
+            <MCol Cols="12">
+                @exception.Message
+            </MCol>
+        }
+    </MRow>
+</PModal>
+
+@code {
+
+    readonly List<string> model = new() { "gpt-3.5-turbo", "gpt-4", "gpt-4-1106-preview"};
+
+    private ChannelDto ChannelDto = new ();
+
+    [Parameter]
+    public bool Value { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> ValueChanged { get; set; }
+
+    [Parameter]
+    public EventCallback OnSucceed { get; set; }
+    
+    private bool throwException;
+    private Exception exception;
+
+    private async Task HandleOnSave(ModalActionEventArgs args)
+    {
+        try
+        {
+            await ChannelService.AddAsync(ChannelDto);
+            ChannelDto = new ChannelDto();
+            await ValueChanged.InvokeAsync(false);
+            await OnSucceed.InvokeAsync();
+        }
+        catch (Exception e)
+        {
+            args.Cancel();
+            exception = e;
+        }
+    }
+
+    private async Task HandleOnCancel()
+    {
+        await ValueChanged.InvokeAsync(false);
+        exception = null;
+        ChannelDto = new ChannelDto();
+    }
+
+}

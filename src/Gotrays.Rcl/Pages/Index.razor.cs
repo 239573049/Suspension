@@ -1,14 +1,22 @@
 ﻿using BlazorComponent;
 using Gotrays.Contract.Dtos.Chats;
+using Gotrays.Rcl.Components;
 
 namespace Gotrays.Rcl.Pages;
 
 public partial class Index
 {
     private List<ChannelDto> _channels = new();
-
+    
+    public ChannelDto UpdateChannelDto { get; set; }
+    
     private StringNumber _selectedItem;
 
+    private ChatMessage ChatMessage;
+
+    private bool addChannel;
+    private bool updateChannel;
+    
     private StringNumber SelectedItem
     {
         get => _selectedItem;
@@ -57,7 +65,7 @@ public partial class Index
 
     private void CreateAsync()
     {
-        
+        addChannel = true;
     }
     
     private async Task LoadChannel()
@@ -65,5 +73,23 @@ public partial class Index
         _channels = await ChannelService.GetListAsync(_search);
         
         SelectedItem = _channels.FirstOrDefault()?.Id.ToString();
+    }
+
+    private async Task DeleteChannel(Guid id)
+    {
+        await ChannelService.DeleteAsync(id);
+        await LoadChannel();
+    }
+
+    private void UpdateChannel(ChannelDto item)
+    {
+        UpdateChannelDto = (ChannelDto)item.Clone();
+        updateChannel = true;
+    }
+
+    private async Task ClearChannel(Guid id)
+    {
+        await ChatMessageService.DeleteAsync(id);
+        await ChatMessage.ClearAsync();
     }
 }

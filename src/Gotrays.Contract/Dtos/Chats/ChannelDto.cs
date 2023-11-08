@@ -1,20 +1,24 @@
-﻿namespace Gotrays.Contract.Dtos.Chats;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Gotrays.Contract.Dtos.Chats;
 
 /// <summary>
 /// 频道
 /// </summary>
-public class ChannelDto 
+public class ChannelDto :ICloneable
 {
     public Guid Id { get; set; }
 
     /// <summary>
     /// 标题
     /// </summary>
+    [Required]
     public string Title { get; set; }
 
     /// <summary>
     /// 模型
     /// </summary>
+    [Required]
     public string Model { get; set; }
 
     /// <summary>
@@ -46,4 +50,19 @@ public class ChannelDto
     /// 创建时间
     /// </summary>
     public DateTime CreatedTime { get; set; }
+
+    public object Clone()
+    {
+        return new ChannelDto()
+        {
+            Title = this.Title,
+            CreatedTime = this.CreatedTime,
+            MaxHistory = this.MaxHistory,
+            Description = Description,
+            Icon = this.Icon,
+            Sort = this.Sort,
+            Model = this.Model,
+            Role = this.Role
+        };
+    }
 }

@@ -14,16 +14,33 @@
             <div class="@("message " + GetChatMessageClass(chatMessage))">
                 <div style="padding: 5px">
                     <MAvatar Size="35">
-                        <MImage Src="@(chatMessage.Curren?userDto?.Avatar:"/_content/Gotrays.Rcl/img/chatgpt.png")"></MImage>
+                        <MImage Src="@(chatMessage.Curren ? userDto?.Avatar : "/_content/Gotrays.Rcl/img/chatgpt.png")"></MImage>
                     </MAvatar>
                 </div>
                 <div class="message-content">
                     <MMarkdownIt Source="@chatMessage.Message"/>
                 </div>
                 <div class="message-function">
-                    <div><MButton Small OnClick="chatMessage.OnCopy" Text>复制</MButton></div>
-                    <div><MButton Small OnClick="chatMessage.OnDelete" Text>删除</MButton></div>
-                    <div><MButton Small OnClick="chatMessage.OnUpdate" Text>编辑</MButton></div>
+
+                    <MMenu Left
+                           Bottom>
+                        <ActivatorContent>
+                            <MButton Icon @attributes="@context.Attrs">
+                                <MIcon>mdi-dots-vertical</MIcon>
+                            </MButton>
+                        </ActivatorContent>
+                        <ChildContent>
+                                <div style="margin: 8px;">
+                                    <MButton Small OnClick="chatMessage.OnCopy" Text>复制</MButton>
+                                </div>
+                                <div style="margin: 8px;">
+                                    <MButton Small OnClick="chatMessage.OnDelete" Text>删除</MButton>
+                                </div>
+                                <div style="margin: 8px;">
+                                    <MButton Small OnClick="chatMessage.OnUpdate" Text>编辑</MButton>
+                                </div>
+                        </ChildContent>
+                    </MMenu>
                 </div>
             </div>
         }

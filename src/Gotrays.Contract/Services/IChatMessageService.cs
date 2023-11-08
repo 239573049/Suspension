@@ -33,4 +33,11 @@ public interface IChatMessageService
     /// <param name="dto"></param>
     /// <returns></returns>
     Task CreateAsync(ChatMessageDto dto);
+
+    /// <summary>
+    /// 通过管道id删除
+    /// </summary>
+    /// <param name="channelId"></param>
+    /// <returns></returns>
+    Task DeleteChannelAsync(Guid channelId);
 }

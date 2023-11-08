@@ -41,4 +41,11 @@ public class ChatMessageService : IChatMessageService
         await _freeSql.Insert(dto)
             .ExecuteAffrowsAsync();
     }
+
+    public async Task DeleteChannelAsync(Guid channelId)
+    {
+        await _freeSql.Delete<ChatMessageDto>()
+            .Where(x => x.ChannelId == channelId)
+            .ExecuteAffrowsAsync();
+    }
 }

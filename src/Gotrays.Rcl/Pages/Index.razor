@@ -1,5 +1,6 @@
 @page "/"
 
+@inject IChatMessageService ChatMessageService
 @inject IChannelService ChannelService
 @layout MainLayout
 
@@ -20,19 +21,45 @@
                 {
                     <MListItem Value="item.Id.ToString()">
                         <MListItemIcon>
-                            <MIcon>
-                                @item.Icon
-                            </MIcon>
+                            <MAvatar Size="25">
+                                <MImage Src="/_content/Gotrays.Rcl/img/chatgpt.png"></MImage>
+                            </MAvatar>
                         </MListItemIcon>
                         <MListItemContent>
                             <MListItemTitle>@item.Title</MListItemTitle>
                         </MListItemContent>
+                        <MListItemActionText>
+
+                            <MMenu Left
+                                   Bottom>
+                                <ActivatorContent>
+                                    <MButton Icon @attributes="@context.Attrs">
+                                        <MIcon>mdi-dots-vertical</MIcon>
+                                    </MButton>
+                                </ActivatorContent>
+                                <ChildContent>
+                                    <MList>
+                                        <MListItem OnClick="async () => await DeleteChannel(item.Id)">
+                                            <MListItemTitle>删除</MListItemTitle>
+                                        </MListItem>
+                                        <MListItem OnClick="() => ClearChannel(item.Id)">
+                                            <MListItemTitle>清空</MListItemTitle>
+                                        </MListItem>
+                                        <MListItem OnClick="() => UpdateChannel(item)">
+                                            <MListItemTitle>编辑</MListItemTitle>
+                                        </MListItem>
+                                    </MList>
+                                </ChildContent>
+                            </MMenu>
+                        </MListItemActionText>
                     </MListItem>
                 }
             </MListItemGroup>
         </MList>
     </div>
     <div class="rcl-right">
-        <ChatMessage />
+        <ChatMessage @ref=ChatMessage/>
     </div>
+    <AddChannel OnSucceed="LoadChannel" @bind-Value="addChannel"></AddChannel>
+    <UpdateChannel ChannelDto="UpdateChannelDto" OnSucceed="LoadChannel" @bind-Value="updateChannel"></UpdateChannel>
 </CascadingValue>

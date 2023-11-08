@@ -32,6 +32,8 @@ public partial class ChatMessage
                 return;
             }
 
+            _chatMessages.Clear();
+            page = 1;
             _selectChannel = value;
             _ = LoadMessage(_selectChannel.Id);
         }
@@ -196,5 +198,12 @@ public partial class ChatMessage
             }
         }));
 
+    }
+
+    public async Task ClearAsync()
+    {
+        page = 1;
+        _chatMessages.Clear();
+        await LoadMessage(_selectChannel.Id);
     }
 }
