@@ -1,0 +1,24 @@
+﻿@inject IHttpClientFactory HttpClientFactory;
+@inject IPopupService PopupService
+
+<PModal @bind-Value="Value"
+        Title="存在新版本"
+        Width="500"
+        OnCancel="() => Value = false">
+
+    <MCardText>
+        <p>@GiteeReleaseDto.tag_name</p>
+        <div class="text--primary">
+            @GiteeReleaseDto.body
+        </div>
+    </MCardText>
+    @if (Update)
+    {
+        <MProgressLinear @bind-Value="@skill" Color="blue-grey" Height="25">
+            <strong>@($"{context}%")</strong>
+        </MProgressLinear>
+    }
+    <MCardActions>
+        <MButton OnClick="UpdateAsync" Text Color="deep-purple accent-4" Block>更新</MButton>
+    </MCardActions>
+</PModal>

@@ -1,5 +1,7 @@
-﻿using BlazorComponent;
+﻿using System.Reflection;
+using BlazorComponent;
 using Gotrays.Contract.Dtos.Chats;
+using Gotrays.Contract.Dtos.Systems;
 using Gotrays.Rcl.Components;
 
 namespace Gotrays.Rcl.Pages;
@@ -7,8 +9,10 @@ namespace Gotrays.Rcl.Pages;
 public partial class Index
 {
     private List<ChannelDto> _channels = new();
-    
+
     public ChannelDto UpdateChannelDto { get; set; }
+
+    public GiteeReleaseDto GiteeReleaseDto { get; set; }
     
     private StringNumber _selectedItem;
 
@@ -16,7 +20,7 @@ public partial class Index
 
     private bool addChannel;
     private bool updateChannel;
-    
+    private bool updateVersion;
     private StringNumber SelectedItem
     {
         get => _selectedItem;
@@ -31,7 +35,7 @@ public partial class Index
     }
 
     private ChannelDto SelectChannel;
-    
+
     private string _search = string.Empty;
 
     private async Task SearchChanged(string search)
@@ -43,7 +47,9 @@ public partial class Index
     protected override async Task OnInitializedAsync()
     {
         await LoadChannel();
-        
+
+        _ = UpdateAsync();
+
         if (_channels.Count == 0)
         {
             var dto = new ChannelDto()
@@ -53,6 +59,7 @@ public partial class Index
                 Role = string.Empty,
                 CreatedTime = DateTime.Now,
                 Sort = 0,
+                Model = "gpt-3.5-turbo",
                 Description = "默认创建的频道",
                 MaxHistory = 0,
             };
@@ -63,15 +70,28 @@ public partial class Index
         SelectedItem = _channels.FirstOrDefault()?.Id.ToString();
     }
 
+    private async Task UpdateAsync()
+    {
+        GiteeReleaseDto = await AppService.GetApp();
+        
+        
+        Assembly assembly = typeof(About).Assembly;
+        if (GiteeReleaseDto.tag_name != assembly.GetName().Version.ToString())
+        {
+            updateVersion = true;
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
     private void CreateAsync()
     {
         addChannel = true;
     }
-    
+
     private async Task LoadChannel()
     {
         _channels = await ChannelService.GetListAsync(_search);
-        
+
         SelectedItem = _channels.FirstOrDefault()?.Id.ToString();
     }
 

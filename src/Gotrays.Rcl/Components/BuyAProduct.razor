@@ -1,0 +1,41 @@
+﻿@inject IChatProductService ChatProductService
+@inject GotraysInterop GotraysInterop
+@inject IPayService PayService
+
+@foreach (var data in Values)
+{
+    <MCard Class="mx-auto" Style="margin: 8px;text-align: center;max-width: 300px;" Outlined>
+        <MListItem ThreeLine>
+            <MListItemContent>
+                <MListItemTitle Class="text-h5 mb-1">
+                    @data.Name
+                </MListItemTitle>
+                <MListItemSubtitle>
+                    <div style="color: red;font-size:18px;">
+                        @data.ActualPrice
+                    </div>
+                    <div style="text-decoration: line-through;font-size: 14px;">
+                        @data.OriginalPrice
+                    </div>
+                    @((MarkupString)string.Join("</br>", data.Description.Split(",")))
+                </MListItemSubtitle>
+            </MListItemContent>
+        </MListItem>
+        <MCardActions>
+            <MButton Block OnClick="()=>BuyAsync(data)" Text>购买</MButton>
+        </MCardActions>
+    </MCard>
+}
+
+@if (payment)
+{
+    <PModal @bind-Value="payment"
+            Persistent
+            Title="支付宝支付"
+            Width="330"
+            OnCancel="() => payment = false">
+        <div id="qr-code">
+
+        </div>
+    </PModal>
+}

@@ -1,0 +1,18 @@
+﻿@page "/pages/shopping"
+@layout MainLayout
+<div class="rcl-body">
+
+    <MTabs
+        BackgroundColor="#e8e8e8"
+        Color="deep-purple accent-4"
+        Right>
+        <MTab>购买产品</MTab>
+        <MTab>购买记录</MTab>
+        <MTabItem>
+            <BuyAProduct/>
+        </MTabItem>
+        <MTabItem Style="padding: 8px;">
+            <PurchaseHistory/>
+        </MTabItem>
+    </MTabs>
+</div>

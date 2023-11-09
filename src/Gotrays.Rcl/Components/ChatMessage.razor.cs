@@ -133,7 +133,7 @@ public partial class ChatMessage
 
         var input = new ChatCompletionDto()
         {
-            model = "gpt-3.5-turbo",
+            model = SelectChannel.Model,
             temperature = 0,
             top_p = 0,
         };

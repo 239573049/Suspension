@@ -1,6 +1,6 @@
 ﻿using GotraysService.Contracts.Shared;
 
-namespace GotraysService.Contracts.Dtos.Products;
+namespace Gotrays.Contract.Dtos.Products;
 
 public class StartPayPayload
 {

@@ -30,8 +30,10 @@ public static class GotrayApplicationExtension
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IChannelService, ChannelService>();
         services.AddScoped<IChatMessageService, ChatMessageService>();
+        services.AddScoped<IAppService, AppService>();
         services.AddScoped<IChatService, ChatService>();
-
+        services.AddScoped<IChatProductService, ChatProductService>();
+        services.AddScoped<IPayService, PayService>();
     }
     
 }

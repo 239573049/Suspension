@@ -14,6 +14,8 @@ public partial class MainLayout
 
     private const string Setting = "/pages/Setting";
 
+    private const string Shopping = "/pages/shopping";
+
     protected override async Task OnInitializedAsync()
     {
         WindowService.UpdateTitle("智能聊天首页");

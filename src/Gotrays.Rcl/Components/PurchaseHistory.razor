@@ -1,0 +1,12 @@
+﻿@using Gotrays.Contract.Dtos.Pays
+@inject IPayService PayService
+
+
+<MDataTable Dense
+             Headers="_headers"
+             Items="Items.Result"
+            HideDefaultFooter
+             ItemKey="r=>r.Id.ToString()"
+             Class="elevation-1"></MDataTable>
+
+ <MPagination Value="Page" TotalVisible="10" ValueChanged="ValueChanged" Class="my-4" Length=(int)Items.Total></MPagination>

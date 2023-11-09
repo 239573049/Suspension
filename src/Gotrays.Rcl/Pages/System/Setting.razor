@@ -1,8 +1,16 @@
 ﻿@page "/pages/Setting"
 @layout MainLayout
+<div class="rcl-body">
+    <MTabs @bind-Value="tab" BackgroundColor="#e8e8e8">
+        <MSpacer></MSpacer>
+        <MTab Value="@("about")">关于</MTab>
+    </MTabs>
 
-<h3>Setting</h3>
-
-@code {
-
-}
+    <MTabsItems @bind-Value="tab" Style="background-color: #e8e8e8">
+        <MTabItem Value="@("about")">
+            <MCard Flat Style="background-color: #e8e8e8">
+                <About/>
+            </MCard>
+        </MTabItem>
+    </MTabsItems>
+</div>

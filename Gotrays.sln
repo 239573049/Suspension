@@ -5,9 +5,9 @@ VisualStudioVersion = 17.8.34004.107
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{18B95ED8-4FC9-4AF8-95E1-BA61E513442F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gotrays.Rcl", "src\Gotrays.Rcl\Gotrays.Rcl.csproj", "{25B9E9C8-E844-4883-8E0F-D5E96C7F1756}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gotrays.Rcl", "src\Gotrays.Rcl\Gotrays.Rcl.csproj", "{25B9E9C8-E844-4883-8E0F-D5E96C7F1756}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gotrays.Desktop", "src\Gotrays.Desktop\Gotrays.Desktop.csproj", "{0911A72B-01FD-41A6-85AA-763CEA8729C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gotrays.Desktop", "src\Gotrays.Desktop\Gotrays.Desktop.csproj", "{0911A72B-01FD-41A6-85AA-763CEA8729C2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{F92D9977-7925-47B6-A1CF-A05F7D10DC94}"
 	ProjectSection(SolutionItems) = preProject
@@ -16,11 +16,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gotrays.Contract", "src\Gotrays.Contract\Gotrays.Contract.csproj", "{C324DD4A-6D76-47CD-AC19-521D8B035D61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gotrays.Contract", "src\Gotrays.Contract\Gotrays.Contract.csproj", "{C324DD4A-6D76-47CD-AC19-521D8B035D61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gotrays.Application", "src\Gotrays.Application\Gotrays.Application.csproj", "{5615B99C-936E-460B-A41D-AE86ADDB7B68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gotrays.Application", "src\Gotrays.Application\Gotrays.Application.csproj", "{5615B99C-936E-460B-A41D-AE86ADDB7B68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gotrays.Shared", "src\Gotrays.Shared\Gotrays.Shared.csproj", "{A22BB595-D38E-461E-83A2-5FA619EDEB3D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gotrays.Shared", "src\Gotrays.Shared\Gotrays.Shared.csproj", "{A22BB595-D38E-461E-83A2-5FA619EDEB3D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

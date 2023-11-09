@@ -13,4 +13,9 @@ public class GotraysInterop : JSModule
     {
         await InvokeVoidAsync("copyText", text);
     }
+
+    public async ValueTask QrCode(string id, string code)
+    {
+        await InvokeVoidAsync("qrCode", id, code);
+    }
 }

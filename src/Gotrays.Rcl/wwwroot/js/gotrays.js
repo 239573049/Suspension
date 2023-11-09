@@ -29,8 +29,18 @@ function copyText(text) {
 
 }
 
+function qrCode(id, value) {
+
+    const qr = new QRCode(document.getElementById(id), {
+        width: 300,
+        height: 300
+    });
+
+    qr.makeCode(value);
+}
 export {
     onScroll,
     scrollBottom,
-    copyText
+    copyText,
+    qrCode
 }
