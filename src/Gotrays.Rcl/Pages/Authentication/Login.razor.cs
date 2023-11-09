@@ -11,7 +11,6 @@ public partial class Login
 
     protected override void OnInitialized()
     {
-        WindowService.SetWindowSize(new Size(500,600));
         WindowService.UpdateTitle("登录页面");
     }
 

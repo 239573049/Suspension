@@ -1,7 +1,7 @@
 ﻿<Project>
 
     <PropertyGroup>
-        <AssemblyVersion>1.0.0.1</AssemblyVersion>
+        <AssemblyVersion>1.0.0.2</AssemblyVersion>
         <Authors>Gotrays</Authors>
         <Company>Gotrays</Company>
         <Product>Gotrays</Product>

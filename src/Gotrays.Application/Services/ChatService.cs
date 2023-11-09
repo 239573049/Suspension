@@ -16,6 +16,7 @@ public class ChatService : ServiceBase, IChatService
             IgnoreNullValues = true
         }), Encoding.UTF8, "application/json");
 
+        UpdateToken(this._storageService.Get(Constant.HttpClientOptions.Token));
         using var response = await Client.SendAsync(req, HttpCompletionOption.ResponseHeadersRead);
 
         if (response.IsSuccessStatusCode)

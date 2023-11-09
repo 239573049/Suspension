@@ -4,6 +4,7 @@ using Gotrays.Contract.Dtos.Users;
 using Gotrays.Shared;
 using Masa.Blazor.Presets;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
 
 namespace Gotrays.Rcl.Components;
@@ -97,6 +98,14 @@ public partial class ChatMessage
         await PopupService.EnqueueSnackbarAsync(new SnackbarOptions("复制成功！", AlertTypes.Success));
     }
 
+    private async Task OnMousedown(KeyboardEventArgs e)
+    {
+        if (e is { ShiftKey: false, Key: "Enter" })
+        {
+            await OnSendAsync();
+        }
+    }
+    
     private async Task OnSendAsync()
     {
         if (_value.IsNullOrWhiteSpace())

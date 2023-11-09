@@ -47,7 +47,7 @@
     </div>
     <MDivider></MDivider>
     <div class="chat-message-footer">
-        <textarea @bind=_value type="text" class="chat-input" placeholder="请输入内容">
+        <textarea @onkeydown="OnMousedown" @bind=_value type="text" class="chat-input" placeholder="请输入内容">
         </textarea>
         <MButton Class="chat-send-but" Style="float: right;margin-right: 8px;" Large OnClick="OnSendAsync" Depressed>发送</MButton>
     </div>

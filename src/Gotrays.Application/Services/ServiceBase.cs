@@ -3,9 +3,9 @@
 public abstract class ServiceBase
 {
     protected HttpClient Client;
-    private readonly IStorageService _storageService;
+    protected readonly IStorageService _storageService;
     protected readonly string Prefix;
-    private readonly IHttpClientFactory _httpClientFactory;
+    protected readonly IHttpClientFactory _httpClientFactory;
     protected ServiceBase(string prefix, IHttpClientFactory httpClientFactory, IStorageService storageService)
     {
         Prefix = prefix;
