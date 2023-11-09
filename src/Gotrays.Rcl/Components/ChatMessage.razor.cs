@@ -1,16 +1,18 @@
-﻿using System.Diagnostics;
-using BlazorComponent;
+﻿using BlazorComponent;
 using Gotrays.Contract.Dtos.Chats;
 using Gotrays.Contract.Dtos.Users;
 using Gotrays.Shared;
 using Masa.Blazor.Presets;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace Gotrays.Rcl.Components;
 
 public partial class ChatMessage
 {
     private ChannelDto _selectChannel;
+
+    private string Id;
 
     [CascadingParameter(Name = nameof(GetUserDto))]
     public GetUserDto userDto { get; set; }
@@ -41,9 +43,11 @@ public partial class ChatMessage
 
     private List<ChatMessageDto> _chatMessages = new();
 
+    private DotNetObjectReference<ChatMessage> _dotNet;
+
     private int page = 1;
 
-    private int pageSize = 5;
+    private int pageSize = 6;
 
     private string _value;
 
@@ -55,13 +59,14 @@ public partial class ChatMessage
             InitEvent(messageDto);
         }
 
-        _chatMessages.AddRange(result);
+        _chatMessages.InsertRange(0,result);
 
         // 如果数据为空则不进行分页递增
         if (result.Count == 0)
         {
             page--;
         }
+
     }
 
     private void InitEvent(ChatMessageDto messageDto)
@@ -75,7 +80,7 @@ public partial class ChatMessage
 
     private async Task Update(ChatMessageDto messageDto)
     {
-        
+
     }
 
     private async Task Delete(ChatMessageDto messageDto)
@@ -168,10 +173,13 @@ public partial class ChatMessage
             role = "user"
         });
 
-        await ChatService.ChatAsync(input, message =>
+        await GotraysInterop.ScrollBottom(Id);
+
+        await ChatService.ChatAsync(input, async message =>
         {
             chatAi.Message += message + Environment.NewLine;
-            InvokeAsync(StateHasChanged);
+            _=InvokeAsync(StateHasChanged);
+            await GotraysInterop.ScrollBottom(Id);
         });
 
         await ChatMessageService.CreateAsync(chatAi);
@@ -189,8 +197,9 @@ public partial class ChatMessage
 
     protected override void OnInitialized()
     {
-        
-        KeyLoadEventBus.Subscription(Constant.LoadEventBus.Notifications,(async o =>
+        _dotNet = DotNetObjectReference.Create(this);
+        Id = Guid.NewGuid().ToString("N");
+        KeyLoadEventBus.Subscription(Constant.LoadEventBus.Notifications, (async o =>
         {
             if (o is string str)
             {
@@ -200,10 +209,34 @@ public partial class ChatMessage
 
     }
 
+    [JSInvokable("OnScroll")]
+    public async Task OnScroll(int scrollTop)
+    {
+        if (scrollTop == 0)
+        {
+            await LoadMessage(_selectChannel.Id);
+            _ = InvokeAsync(StateHasChanged);
+        }
+    }
+
     public async Task ClearAsync()
     {
         page = 1;
         _chatMessages.Clear();
         await LoadMessage(_selectChannel.Id);
+    }
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _ = Task.Run(async () =>
+            {
+                await Task.Delay(100);
+
+                await GotraysInterop.OnScroll(Id, _dotNet, nameof(OnScroll));
+            });
+        }
     }
 }

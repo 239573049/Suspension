@@ -13,11 +13,11 @@ public class ChatMessageService : IChatMessageService
     {
         var result = await _freeSql.Select<ChatMessageDto>()
             .Where(x => x.ChannelId == channelId)
-            .OrderBy(x=>x.CreatedTime)
+            .OrderByDescending(x=>x.CreatedTime)
             .Page(page, pageSize)
             .ToListAsync();
 
-        return result;
+        return result.OrderBy(x=>x.CreatedTime).ToList();
     }
 
     public async Task UpdateAsync(ChatMessageDto messageDto)

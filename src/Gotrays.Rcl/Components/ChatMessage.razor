@@ -5,7 +5,7 @@
 @inject IKeyLoadEventBus KeyLoadEventBus
 
 <div class="chat-message-container">
-    <div class="chat-message-content">
+    <div id="@Id" class="chat-message-content">
         @foreach (var chatMessage in _chatMessages)
         {
             <div class="message-time">

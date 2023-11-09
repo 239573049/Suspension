@@ -2,13 +2,15 @@
 function onScroll(id, DotNetHelper, name) {
     var dom = document.getElementById(id);
     dom.addEventListener('scroll', async function (e) {
-        const scrollTop = dom.scrollTop;
-        await DotNetHelper.invokeMethodAsync(name,scrollTop);
+        console.log(dom.scrollTop, dom.scrollTop === 0);
+        if (dom.scrollTop === 0) {
+            await DotNetHelper.invokeMethodAsync(name, dom.scrollTop);
+        }
     });
 }
 
 function  scrollBottom(id){
-    var element = document.getElementById(id);
+    const element = document.getElementById(id);
     if(element)
         element.scrollTop = element.scrollHeight;
 }

@@ -2,6 +2,7 @@
 @inherits LayoutComponentBase
 @inject IUserService UserService
 @inject IWindowService WindowService
+@inject IAppService AppService
 @inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
@@ -45,6 +46,7 @@
                 @Body
             </CascadingValue>
         </div>
+        <UpdateVersion GiteeReleaseDto="GiteeReleaseDto" @bind-Value="updateVersion"/>
     </MErrorHandler>
 
 </MApp>

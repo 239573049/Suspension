@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 using Gotrays.Contract.Services;
 using Gotrays.Desktop.Services;
+using System.ComponentModel;
 
 namespace Gotrays.Desktop;
 
@@ -15,22 +16,24 @@ public partial class MainWindow : Window
 {
     public static MainWindow Windwo;
 
+    private IServiceCollection _service;
+
     public MainWindow()
     {
         InitializeComponent();
 
         Windwo = this;
 
-        var serviceCollection = new ServiceCollection();
-        serviceCollection.AddWpfBlazorWebView();
-        serviceCollection.AddMasaBlazor();
-        serviceCollection.AddBlazorWebViewDeveloperTools();
-        serviceCollection.AddGotraysRcl();
-        serviceCollection.AddGotraysApplication();
+        _service = new ServiceCollection();
+        _service.AddWpfBlazorWebView();
+        _service.AddMasaBlazor();
+        _service.AddBlazorWebViewDeveloperTools();
+        _service.AddGotraysRcl();
+        _service.AddGotraysApplication();
 
-        serviceCollection.AddScoped<IWindowService, WindowService>();
+        _service.AddScoped<IWindowService, WindowService>();
 
-        Resources.Add("services", serviceCollection.BuildServiceProvider().BuilderRcl());
+        Resources.Add("services", _service.BuildServiceProvider().BuilderRcl());
 
         GotraysWebView.RootComponents.Add(new RootComponent()
         {
@@ -38,5 +41,14 @@ public partial class MainWindow : Window
             Selector = "#app"
         });
 
+        Closing += MainWindow_Closing;
     }
+
+
+    private void MainWindow_Closing(object sender, CancelEventArgs e)
+    {
+        e.Cancel = true;
+        Hide();
+    }
+
 }

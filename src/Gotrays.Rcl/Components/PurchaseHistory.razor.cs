@@ -40,4 +40,9 @@ public partial class PurchaseHistory
         Page = page;
         await LoadAsync();
     }
+
+    private int GetLength()
+    {
+        return (int)Math.Ceiling((double)Items.Total / 10);
+    }
 }

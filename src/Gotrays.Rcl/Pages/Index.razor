@@ -2,7 +2,6 @@
 
 @inject IChatMessageService ChatMessageService
 @inject IChannelService ChannelService
-@inject IAppService AppService
 @layout MainLayout
 
 <CascadingValue Name="@nameof(SelectChannel)" Value="SelectChannel">
@@ -63,5 +62,4 @@
     </div>
     <AddChannel OnSucceed="LoadChannel" @bind-Value="addChannel"></AddChannel>
     <UpdateChannel ChannelDto="UpdateChannelDto" OnSucceed="LoadChannel" @bind-Value="updateChannel"></UpdateChannel>
-    <UpdateVersion GiteeReleaseDto="GiteeReleaseDto" @bind-Value="updateVersion"/>
 </CascadingValue>
