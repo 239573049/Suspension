@@ -62,7 +62,8 @@ public class ChannelDto :ICloneable
             Icon = this.Icon,
             Sort = this.Sort,
             Model = this.Model,
-            Role = this.Role
+            Role = this.Role,
+            Id = this.Id,
         };
     }
 }

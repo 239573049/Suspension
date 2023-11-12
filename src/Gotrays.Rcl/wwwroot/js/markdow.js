@@ -37,7 +37,6 @@ window.copy = async (e) => {
 
 // Base64编码
 function base64Encode(str) {
-    str = window.encodeURIComponent(str);
     let base64Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     let result = "";
     let i = 0;
@@ -99,6 +98,5 @@ function base64Decode(str) {
         }
     }
 
-    result = window.decodeURI(result)
     return result;
 }

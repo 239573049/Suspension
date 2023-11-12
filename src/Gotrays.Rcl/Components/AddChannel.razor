@@ -13,35 +13,35 @@
                         Label="标题"
                         Dense
                         Outlined
-                        HideDetails="@("auto")" />
+                        HideDetails="@("auto")"/>
         </MCol>
         <MCol Cols="12">
             <MTextField @bind-Value="ChannelDto.Description"
                         Label="描述"
                         Dense
                         Outlined
-                        HideDetails="@("auto")" />
+                        HideDetails="@("auto")"/>
         </MCol>
         <MCol Cols="12">
             <MTextField @bind-Value="ChannelDto.MaxHistory"
                         Label="关联最大记录"
                         Dense
                         Outlined
-                        HideDetails="@("auto")" />
+                        HideDetails="@("auto")"/>
         </MCol>
         <MCol Cols="12">
             <MTextField @bind-Value="ChannelDto.Sort"
                         Label="排序"
                         Dense
                         Outlined
-                        HideDetails="@("auto")" />
+                        HideDetails="@("auto")"/>
         </MCol>
         <MCol Cols="12">
             <MTextarea @bind-Value="ChannelDto.Role"
-                        Label="角色"
-                        Dense
-                        Outlined
-                        HideDetails="@("auto")" />
+                       Label="角色"
+                       Dense
+                       Outlined
+                       HideDetails="@("auto")"/>
         </MCol>
         <MCol Cols="12">
             <MSelect Items="model"
@@ -50,7 +50,8 @@
                      ItemValue="u => u"
                      Label="AI模型"
                      Dense
-                     Outlined></MSelect>
+                     Outlined>
+            </MSelect>
         </MCol>
         @if (exception != null)
         {
@@ -63,9 +64,9 @@
 
 @code {
 
-    readonly List<string> model = new() { "gpt-3.5-turbo", "gpt-4", "gpt-4-1106-preview"};
+    readonly List<string> model = new() { "gpt-3.5-turbo", "gpt-4", "gpt-4-1106-preview", "gpt-4-vision-preview" };
 
-    private ChannelDto ChannelDto = new ();
+    private ChannelDto ChannelDto = new();
 
     [Parameter]
     public bool Value { get; set; }
@@ -75,7 +76,7 @@
 
     [Parameter]
     public EventCallback OnSucceed { get; set; }
-    
+
     private bool throwException;
     private Exception exception;
 

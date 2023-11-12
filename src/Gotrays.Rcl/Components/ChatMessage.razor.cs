@@ -9,11 +9,16 @@ using Microsoft.JSInterop;
 
 namespace Gotrays.Rcl.Components;
 
-public partial class ChatMessage
+public partial class ChatMessage : IDisposable
 {
     private ChannelDto _selectChannel;
 
     private string Id;
+
+    /// <summary>
+    /// 当前token数量
+    /// </summary>
+    private int token;
 
     [CascadingParameter(Name = nameof(GetUserDto))]
     public GetUserDto userDto { get; set; }
@@ -36,7 +41,7 @@ public partial class ChatMessage
             }
 
             _chatMessages.Clear();
-            page = 1;
+            _page = 1;
             _selectChannel = value;
             _ = LoadMessage(_selectChannel.Id);
         }
@@ -46,28 +51,27 @@ public partial class ChatMessage
 
     private DotNetObjectReference<ChatMessage> _dotNet;
 
-    private int page = 1;
+    private int _page = 1;
 
-    private int pageSize = 6;
+    private int _pageSize = 6;
 
     private string _value;
 
     private async Task LoadMessage(Guid channelId)
     {
-        var result = await ChatMessageService.GetListAsync(channelId, page++, pageSize);
+        var result = await ChatMessageService.GetListAsync(channelId, _page++, _pageSize);
         foreach (var messageDto in result)
         {
             InitEvent(messageDto);
         }
 
-        _chatMessages.InsertRange(0,result);
+        _chatMessages.InsertRange(0, result);
 
         // 如果数据为空则不进行分页递增
         if (result.Count == 0)
         {
-            page--;
+            _page--;
         }
-
     }
 
     private void InitEvent(ChatMessageDto messageDto)
@@ -81,7 +85,6 @@ public partial class ChatMessage
 
     private async Task Update(ChatMessageDto messageDto)
     {
-
     }
 
     private async Task Delete(ChatMessageDto messageDto)
@@ -105,7 +108,7 @@ public partial class ChatMessage
             await OnSendAsync();
         }
     }
-    
+
     private async Task OnSendAsync()
     {
         if (_value.IsNullOrWhiteSpace())
@@ -187,11 +190,21 @@ public partial class ChatMessage
         await ChatService.ChatAsync(input, async message =>
         {
             chatAi.Message += message + Environment.NewLine;
-            _=InvokeAsync(StateHasChanged);
+            _ = InvokeAsync(StateHasChanged);
             await GotraysInterop.ScrollBottom(Id);
         });
 
         await ChatMessageService.CreateAsync(chatAi);
+
+        await GetToken();
+    }
+
+    private async Task GetToken()
+    {
+        var result = await UserService.GetDayDosageAsync();
+
+        token = result.free + result.money;
+        _ = InvokeAsync(StateHasChanged);
     }
 
     private string GetChatMessageClass(ChatMessageDto chatMessage)
@@ -215,7 +228,6 @@ public partial class ChatMessage
                 await PopupService.EnqueueSnackbarAsync(new SnackbarOptions(str, AlertTypes.Info));
             }
         }));
-
     }
 
     [JSInvokable("OnScroll")]
@@ -230,7 +242,7 @@ public partial class ChatMessage
 
     public async Task ClearAsync()
     {
-        page = 1;
+        _page = 1;
         _chatMessages.Clear();
         await LoadMessage(_selectChannel.Id);
     }
@@ -242,10 +254,24 @@ public partial class ChatMessage
         {
             _ = Task.Run(async () =>
             {
-                await Task.Delay(100);
+                await Task.Delay(500);
 
                 await GotraysInterop.OnScroll(Id, _dotNet, nameof(OnScroll));
+
+                await GotraysInterop.ScrollBottom(Id);
             });
+            await GetToken();
         }
+    }
+
+    public void Dispose()
+    {
+        _dotNet.Dispose();
+        if (GotraysInterop is IDisposable gotraysInteropDisposable)
+            gotraysInteropDisposable.Dispose();
+        else if (GotraysInterop != null)
+            _ = GotraysInterop.DisposeAsync().AsTask();
+        
+        KeyLoadEventBus.Remove(Constant.LoadEventBus.Notifications);
     }
 }

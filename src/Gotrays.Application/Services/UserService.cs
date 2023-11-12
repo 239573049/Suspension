@@ -54,7 +54,7 @@ public class UserService : ServiceBase, IUserService
 
     public async Task<GetDayDosageDto> GetDayDosageAsync()
     {
-        return await Client.GetFromJsonAsync<GetDayDosageDto>(Prefix);
+        return await Client.GetFromJsonAsync<GetDayDosageDto>(Prefix+"/DayDosage");
     }
 
     public Task Edit(EditPayload payload)

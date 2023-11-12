@@ -2,9 +2,18 @@
 @inject IChatService ChatService
 @inject GotraysInterop GotraysInterop
 @inject IPopupService PopupService
+@inject IUserService UserService
 @inject IKeyLoadEventBus KeyLoadEventBus
 
 <div class="chat-message-container">
+    <div style="background-color: #F3F3F3;height: 35px;padding: 5px;">
+        <span style="font-size: 18px;">@_selectChannel?.Title</span> 
+        <span style="margin-left: 25px">模型：@_selectChannel?.Model</span>
+        <span style="float: right;color: #007bff;">
+            剩余token：
+            @token
+        </span>
+    </div>
     <div id="@Id" class="chat-message-content">
         @foreach (var chatMessage in _chatMessages)
         {
@@ -30,15 +39,15 @@
                             </MButton>
                         </ActivatorContent>
                         <ChildContent>
-                                <div style="margin: 8px;">
-                                    <MButton Small OnClick="chatMessage.OnCopy" Text>复制</MButton>
-                                </div>
-                                <div style="margin: 8px;">
-                                    <MButton Small OnClick="chatMessage.OnDelete" Text>删除</MButton>
-                                </div>
-                                <div style="margin: 8px;">
-                                    <MButton Small OnClick="chatMessage.OnUpdate" Text>编辑</MButton>
-                                </div>
+                            <div style="margin: 8px;">
+                                <MButton Small OnClick="chatMessage.OnCopy" Text>复制</MButton>
+                            </div>
+                            <div style="margin: 8px;">
+                                <MButton Small OnClick="chatMessage.OnDelete" Text>删除</MButton>
+                            </div>
+                            <div style="margin: 8px;">
+                                <MButton Small OnClick="chatMessage.OnUpdate" Text>编辑</MButton>
+                            </div>
                         </ChildContent>
                     </MMenu>
                 </div>
