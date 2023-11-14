@@ -267,11 +267,6 @@ public partial class ChatMessage : IDisposable
     public void Dispose()
     {
         _dotNet.Dispose();
-        if (GotraysInterop is IDisposable gotraysInteropDisposable)
-            gotraysInteropDisposable.Dispose();
-        else if (GotraysInterop != null)
-            _ = GotraysInterop.DisposeAsync().AsTask();
-        
         KeyLoadEventBus.Remove(Constant.LoadEventBus.Notifications);
     }
 }

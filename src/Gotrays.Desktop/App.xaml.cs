@@ -23,6 +23,7 @@ public partial class App : System.Windows.Application
         notifyIcon = new TaskbarIcon();
         notifyIcon.Icon = new System.Drawing.Icon(stream); // 设置托盘图标
         notifyIcon.ContextMenu = new ContextMenu();
+        notifyIcon.TrayMouseDoubleClick += OnOpenWindow;
 
         // 添加托盘菜单项
         MenuItem openWindow = new MenuItem();
