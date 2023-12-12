@@ -1,11 +1,11 @@
-﻿using Gotrays.Rcl;
-using Gotrays.Rcl.Extensions;
-using Microsoft.AspNetCore.Components.WebView.Wpf;
-using Microsoft.Extensions.DependencyInjection;
+﻿using System.ComponentModel;
 using System.Windows;
+using CoreFlex.Module.Extensions;
 using Gotrays.Contract.Services;
 using Gotrays.Desktop.Services;
-using System.ComponentModel;
+using Gotrays.Rcl;
+using Microsoft.AspNetCore.Components.WebView.Wpf;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Gotrays.Desktop;
 
@@ -25,15 +25,22 @@ public partial class MainWindow : Window
         Windwo = this;
 
         _service = new ServiceCollection();
-        _service.AddWpfBlazorWebView();
-        _service.AddMasaBlazor();
-        _service.AddBlazorWebViewDeveloperTools();
-        _service.AddGotraysRcl();
-        _service.AddGotraysApplication();
 
+        _service.AddCoreFlexAutoInjectAsync<GotraysDesktopModule>().ConfigureAwait(false).GetAwaiter()
+            .GetResult();
+        
+        _service.AddWpfBlazorWebView();
+
+#if DEBUG
+        _service.AddBlazorWebViewDeveloperTools();
+#endif
+        
         _service.AddScoped<IWindowService, WindowService>();
 
-        Resources.Add("services", _service.BuildServiceProvider().BuilderRcl());
+        var provider = _service.BuildServiceProvider();
+        
+        provider.UseCoreFlexAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+        Resources.Add("services", provider);
 
         GotraysWebView.RootComponents.Add(new RootComponent()
         {
@@ -42,6 +49,7 @@ public partial class MainWindow : Window
         });
 
         Closing += MainWindow_Closing;
+
     }
 
 
@@ -50,5 +58,4 @@ public partial class MainWindow : Window
         e.Cancel = true;
         Hide();
     }
-
 }

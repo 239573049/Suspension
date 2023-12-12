@@ -1,8 +1,8 @@
-﻿using Hardcodet.Wpf.TaskbarNotification;
+﻿using System.Drawing;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Forms;
+using Hardcodet.Wpf.TaskbarNotification;
 
 namespace Gotrays.Desktop;
 /// <summary>
@@ -21,7 +21,7 @@ public partial class App : System.Windows.Application
 
         // 创建NotifyIcon实例
         notifyIcon = new TaskbarIcon();
-        notifyIcon.Icon = new System.Drawing.Icon(stream); // 设置托盘图标
+        notifyIcon.Icon = new Icon(stream); // 设置托盘图标
         notifyIcon.ContextMenu = new ContextMenu();
         notifyIcon.TrayMouseDoubleClick += OnOpenWindow;
 

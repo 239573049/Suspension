@@ -1,14 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Masa.BuildingBlocks.Ddd.Domain" Version="1.0.1-preview.5" />
-    <PackageReference Include="Masa.Utils.Models.Config" Version="1.0.1-preview.5" />
+    <PackageReference Include="CoreFlex.Module" Version="0.1.2" />
+    <PackageReference Include="Masa.BuildingBlocks.Ddd.Domain" Version="1.0.1-preview.10" />
+    <PackageReference Include="Masa.Utils.Models.Config" Version="1.0.1-preview.10" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,7 +3,7 @@ using Microsoft.JSInterop;
 
 namespace Gotrays.Rcl.Interops;
 
-public class GotraysInterop : JSModule
+public class GotraysInterop : JSModule, IScopedDependency
 {
     public GotraysInterop(IJSRuntime js) : base(js, "/_content/Gotrays.Rcl/js/gotrays.js")
     {

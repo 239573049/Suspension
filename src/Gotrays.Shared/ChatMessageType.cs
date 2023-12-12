@@ -3,6 +3,5 @@
 public enum ChatMessageType
 {
     Text,
-    
-    
+    Image,    
 }
